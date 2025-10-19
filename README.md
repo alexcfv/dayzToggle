@@ -1,3 +1,5 @@
+### ⚠️ Not user friendly, in development stage
+---
 ## Clone the repository
 ```bash
 git clone https://github.com/alexcfv/dayzToggle.git
@@ -19,8 +21,11 @@ Note the event number, for example `event12`.
 sudo chmod a+r /dev/input/event12
 ```
 ## Write event12 in code
+```golang
+kbdDev    = "/dev/input/event12" // keyboard
+```
 
-## Install Go dependencies and Build the binary
+## Install Go dependencies and Build the binary(or install binary in releases)
 ```bash
 go mod tidy
 go build -o dayzToggle main.go
