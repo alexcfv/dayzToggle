@@ -12,11 +12,11 @@ import (
 
 const (
 	iface     = "wlan0"
-	rate      = "500kbit"
-	delaySpec = "300ms"
-	jitter    = "100ms"
-	loss      = "3%"
-	kbdDev    = "/dev/input/event11" // keyboard
+	rate      = "100kbit"
+	delaySpec = "0ms"
+	jitter    = "0ms"
+	loss      = "0%"
+	kbdDev    = "/dev/input/event4" // keyboard
 )
 
 func runCmd(cmd string, args ...string) {
