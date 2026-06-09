@@ -26,13 +26,23 @@ func runCmd(cmd string, args ...string) {
 	_ = c.Run()
 }
 
+func safeDeleteQdisc() {
+	c := exec.Command("sudo", "tc", "qdisc", "del", "dev", iface, "root")
+	c.Stdout = nil
+	c.Stderr = nil
+	_ = c.Run()
+}
+
 func enableLag() {
-	runCmd("sudo", "tc", "qdisc", "del", "dev", iface, "root")
+	// delete old qdisc
+	safeDeleteQdisc()
+
 	runCmd("sudo", "tc", "qdisc", "add", "dev", iface, "root", "handle", "1:", "htb", "default", "1")
 	runCmd("sudo", "tc", "class", "add", "dev", iface, "parent", "1:", "classid", "1:1", "htb", "rate", rate)
 	runCmd("sudo", "tc", "qdisc", "add", "dev", iface, "parent", "1:1", "handle", "10:", "netem",
 		"delay", delaySpec, jitter, "loss", loss)
-	fmt.Println("🐢 Lag enable")
+
+	fmt.Println("🐢 Lag enable (fq_codel)")
 }
 
 func disableLag() {
