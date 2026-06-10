@@ -1,5 +1,11 @@
 ### ⚠️ Not user friendly, in development stage
 ---
+
+⚠️The current implementation uses Linux Traffic Control (tc) for network shaping. However, on Wi-Fi interfaces, driver-level buffering, frame aggregation, and hardware offloading can make bandwidth and latency controls less deterministic.
+
+To achieve predictable and platform-independent network simulation, the project will be migrated to a UDP proxy architecture. This approach provides direct packet-level control and enables accurate simulation of latency, jitter, packet loss, and bandwidth constraints.⚠️
+
+---
 ## Clone the repository
 ```bash
 git clone https://github.com/alexcfv/dayzToggle.git
